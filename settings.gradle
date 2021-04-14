@@ -1,0 +1,3 @@
+include ':UserInterfaceThemesAndroid'
+include ':app'
+rootProject.name = "UserInterfaceThemesAndroidLibrary"
