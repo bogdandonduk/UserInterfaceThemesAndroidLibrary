@@ -10,4 +10,8 @@ object UIThemesContext {
     fun isDarkThemeEnabled(context: Context) =
         context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE)
             .getBoolean(IS_DARK_THEME_ENABLED, context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
+
+    fun setDarkTheme(context: Context, enabled: Boolean = true) {
+        context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE).edit().putBoolean(IS_DARK_THEME_ENABLED, enabled).apply()
+    }
 }
