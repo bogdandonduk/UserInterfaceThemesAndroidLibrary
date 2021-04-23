@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.AppBarLayout
 
@@ -105,18 +106,22 @@ class UIThemesService(context: Context) {
     }
 
     fun initializeImage(image: ImageView, lightImageDrawableResId: Int, darkImageDrawableResId: Int) {
-        image.setImageResource(if(darkTheme!!) lightImageDrawableResId else darkImageDrawableResId)
+        image.setImageResource(if(darkTheme!!) darkImageDrawableResId else lightImageDrawableResId)
     }
 
     fun initializeImage(image: ImageView, lightImageDrawable: Drawable, darkImageDrawable: Drawable) {
-        image.setImageDrawable(if(darkTheme!!) lightImageDrawable else darkImageDrawable)
+        image.setImageDrawable(if(darkTheme!!) darkImageDrawable else lightImageDrawable)
     }
 
     fun initializeMenuIcon(menuItem: MenuItem, lightIconDrawableResId: Int, darkIconDrawableResId: Int) {
-        menuItem.setIcon(if(darkTheme!!) lightIconDrawableResId else darkIconDrawableResId)
+        menuItem.setIcon(if(darkTheme!!) darkIconDrawableResId else lightIconDrawableResId)
+    }
+
+    fun initializeOverflowMenuIcon(context: Context, toolbar: Toolbar, lightIconDrawableResId: Int, darkIconDrawableResId: Int) {
+        toolbar.overflowIcon = ResourcesCompat.getDrawable(context.resources, if(darkTheme!!) darkIconDrawableResId else lightIconDrawableResId, null)
     }
 
     fun initializeImage(menuItem: MenuItem, lightIconDrawable: Drawable, darkIconDrawable: Drawable) {
-        menuItem.icon = if(darkTheme!!) lightIconDrawable else darkIconDrawable
+        menuItem.icon = if(darkTheme!!) darkIconDrawable else lightIconDrawable
     }
 }
