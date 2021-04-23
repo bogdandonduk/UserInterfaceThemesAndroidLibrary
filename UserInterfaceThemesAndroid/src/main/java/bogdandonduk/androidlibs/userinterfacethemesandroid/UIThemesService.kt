@@ -44,6 +44,9 @@ class UIThemesService(context: Context) {
 
                     }
         }
+
+        Log.d("TAG", ": UIThemesService Instantiated")
+
     }
 
     fun isDarkThemeEnabled(context: Context) : Boolean =
