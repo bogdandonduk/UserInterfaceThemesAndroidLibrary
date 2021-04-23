@@ -89,19 +89,19 @@ class UIThemesService(context: Context) {
     }
 
     fun initializeDrawerToggleColor(context: Context, drawerToggle: ActionBarDrawerToggle?, colorResId: Int) {
-        drawerToggle?.drawerArrowDrawable.color = ResourcesCompat.getColor(getConfiguredResources(context, darkTheme!!), colorResId, null)
+        drawerToggle?.drawerArrowDrawable?.color = ResourcesCompat.getColor(getConfiguredResources(context, darkTheme!!), colorResId, null)
     }
 
     fun initializeDrawerToggleColor(context: Context, drawerToggle: ActionBarDrawerToggle?, lightThemeColorResId: Int, darkThemeColorResId: Int) {
-        drawerToggle?.drawerArrowDrawable.color = ResourcesCompat.getColor(context.resources, if(darkTheme!!) darkThemeColorResId else lightThemeColorResId, null)
+        drawerToggle?.drawerArrowDrawable?.color = ResourcesCompat.getColor(context.resources, if(darkTheme!!) darkThemeColorResId else lightThemeColorResId, null)
     }
 
     fun initializeHomeAsUpIndicator(actionBar: ActionBar?, lightThemeIndicatorDrawableResId: Int, darkThemeIndicatorDrawableResId: Int) {
-         actionBar.setHomeAsUpIndicator(if(darkTheme!!) darkThemeIndicatorDrawableResId else lightThemeIndicatorDrawableResId)
+         actionBar?.setHomeAsUpIndicator(if(darkTheme!!) darkThemeIndicatorDrawableResId else lightThemeIndicatorDrawableResId)
     }
 
     fun initializeAppBarLayoutStyle(appBarLayout: AppBarLayout?, lightThemeStyleId: Int = android.R.style.ThemeOverlay_Material_Dark, darkThemeStyleId: Int = android.R.style.ThemeOverlay_Material_Light) {
-        appBarLayout?.context.setTheme(if(darkTheme!!) darkThemeStyleId else lightThemeStyleId)
+        appBarLayout?.context?.setTheme(if(darkTheme!!) darkThemeStyleId else lightThemeStyleId)
         appBarLayout?.invalidate()
     }
 
