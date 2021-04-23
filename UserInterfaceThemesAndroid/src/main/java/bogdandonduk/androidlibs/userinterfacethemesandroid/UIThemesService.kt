@@ -18,7 +18,7 @@ import com.google.android.material.appbar.AppBarLayout
 
 class UIThemesService(context: Context) {
     companion object {
-        private const val LIBRARY_PREFIX = "prefs_bogdandonduk.androidlibs.userinterfacethemesandroid_"
+        private const val LIBRARY_PREFIX = "prefs_bogdandonduk.androidlibs.userinterfacethemesandroid"
         private const val IS_DARK_THEME_ENABLED = "isDarkThemeEnabled"
 
         private var instance: UIThemesService? = null
@@ -39,8 +39,8 @@ class UIThemesService(context: Context) {
             invoke()
 
             context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE)
-                    .registerOnSharedPreferenceChangeListener { _: SharedPreferences, key: String ->
-                        if (key == IS_DARK_THEME_ENABLED) invoke()
+                    .registerOnSharedPreferenceChangeListener { preferences: SharedPreferences, key: String ->
+                        if(preferences == getPreferences(context) && key == IS_DARK_THEME_ENABLED) invoke()
                         Log.d("TAG", ": Preferences Changed")
 
                     }
@@ -50,13 +50,16 @@ class UIThemesService(context: Context) {
 
     }
 
-    fun isDarkThemeEnabled(context: Context) : Boolean =
+    private fun getPreferences(context: Context) : SharedPreferences =
             context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE)
+
+    fun isDarkThemeEnabled(context: Context) : Boolean =
+            getPreferences(context)
                 .getBoolean(IS_DARK_THEME_ENABLED, context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
 
 
     fun setDarkTheme(context: Context, enabled: Boolean, host: UIThemesHost?) {
-        context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE).edit().putBoolean(IS_DARK_THEME_ENABLED, enabled).apply()
+        getPreferences(context).edit().putBoolean(IS_DARK_THEME_ENABLED, enabled).apply()
 
         host?.initializeTheme()
     }
