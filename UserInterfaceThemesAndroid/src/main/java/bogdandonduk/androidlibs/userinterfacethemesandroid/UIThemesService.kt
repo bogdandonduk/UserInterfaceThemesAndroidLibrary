@@ -18,8 +18,10 @@ import com.google.android.material.appbar.AppBarLayout
 
 class UIThemesService(context: Context) {
     companion object {
-        private const val LIBRARY_PREFIX = "prefs_bogdandonduk.androidlibs.userinterfacethemesandroid"
-        private const val IS_DARK_THEME_ENABLED = "isDarkThemeEnabled"
+        private const val delimiter = "_"
+
+        private const val LIBRARY_PREFIX = "prefs" + delimiter + "bogdandonduk.androidlibs.userinterfacethemesandroid"
+        private const val IS_DARK_THEME_ENABLED = "isDarkThemeEnabled$delimiter$LIBRARY_PREFIX"
 
         private var instance: UIThemesService? = null
 
@@ -28,6 +30,8 @@ class UIThemesService(context: Context) {
 
             return instance!!
         }
+
+
     }
 
     private var darkTheme: Boolean? = null
@@ -39,10 +43,9 @@ class UIThemesService(context: Context) {
             invoke()
 
             context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE)
-                    .registerOnSharedPreferenceChangeListener { preferences: SharedPreferences, key: String ->
-                        if(preferences == getPreferences(context) && key == IS_DARK_THEME_ENABLED) invoke()
+                    .registerOnSharedPreferenceChangeListener { _: SharedPreferences, key: String ->
+                        if(key == IS_DARK_THEME_ENABLED) invoke()
                         Log.d("TAG", ": Preferences Changed")
-
                     }
         }
 
