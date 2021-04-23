@@ -1,5 +1,5 @@
 package bogdandonduk.androidlibs.userinterfacethemesandroid
 
-interface UIThemeHost {
+interface UIThemesHost {
     fun initializeTheme()
 }
