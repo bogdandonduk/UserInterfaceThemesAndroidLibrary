@@ -30,11 +30,12 @@ class UIThemesService(context: Context) {
 
             return instance!!
         }
-
-
     }
 
     private var darkTheme: Boolean? = null
+
+    private var lightColorScheme: ColorScheme? = null
+    private var darkColorScheme: ColorScheme? = null
 
     init {
         {
@@ -45,12 +46,21 @@ class UIThemesService(context: Context) {
             context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE)
                     .registerOnSharedPreferenceChangeListener { _: SharedPreferences, key: String ->
                         if(key == IS_DARK_THEME_ENABLED) invoke()
-                        Log.d("TAG", ": Preferences Changed")
                     }
         }
+    }
 
-        Log.d("TAG", ": UIThemesService Instantiated")
+    fun attachColorSchemes(light: ColorScheme? = null, dark: ColorScheme? = null) {
+        lightColorScheme = light
+        darkColorScheme = dark
+    }
 
+    fun applyColorScheme() {
+        if(darkTheme != null)
+            if(darkTheme!!)
+                darkColorScheme?.apply()
+            else
+                lightColorScheme?.apply()
     }
 
     private fun getPreferences(context: Context) : SharedPreferences =
