@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -119,5 +120,13 @@ class UIThemesService(context: Context) {
 
     fun initializeOverflowMenuIcon(context: Context, toolbar: Toolbar?, lightIconDrawableResId: Int, darkIconDrawableResId: Int) {
         toolbar?.overflowIcon = ResourcesCompat.getDrawable(context.resources, if(darkTheme!!) darkIconDrawableResId else lightIconDrawableResId, null)
+    }
+
+    fun initializeActionBarTitleColor(context: Context, toolbar: Toolbar?, @ColorRes colorResId: Int) {
+        toolbar?.setTitleTextColor(ResourcesCompat.getColor(getConfiguredResources(context, darkTheme!!), colorResId, null))
+    }
+
+    fun initializeActionBarTitleColor(context: Context, toolbar: Toolbar?, @ColorRes lightThemeColorResId: Int, darkThemeColorResId: Int) {
+        toolbar?.setTitleTextColor(ResourcesCompat.getColor(context.resources, if(darkTheme!!) darkThemeColorResId else lightThemeColorResId, null))
     }
 }
