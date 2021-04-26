@@ -81,7 +81,7 @@ object UIThemesService {
         actionBar?.setHomeAsUpIndicator(if(isDarkThemeEnabled(context)) darkThemeDrawableResId else lightThemeDrawableResId)
     }
 
-    fun initializeAppBarLayoutStyle(context: Context, appBarLayout: AppBarLayout?, @StyleRes lightThemeStyleId: Int = android.R.style.ThemeOverlay_Material_Dark, @StyleRes darkThemeStyleId: Int = android.R.style.ThemeOverlay_Material_Light) {
+    fun initializeAppBarLayoutStyle(context: Context, appBarLayout: AppBarLayout?, @StyleRes lightThemeStyleId: Int = android.R.style.ThemeOverlay_Material_Light, @StyleRes darkThemeStyleId: Int = android.R.style.ThemeOverlay_Material_Dark) {
         appBarLayout?.context?.setTheme(if(isDarkThemeEnabled(context)) darkThemeStyleId else lightThemeStyleId)
         appBarLayout?.invalidate()
     }
