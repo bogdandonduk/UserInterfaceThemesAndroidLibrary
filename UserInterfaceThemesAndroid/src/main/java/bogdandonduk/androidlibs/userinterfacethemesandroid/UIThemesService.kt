@@ -21,7 +21,7 @@ import com.google.android.material.appbar.AppBarLayout
 object UIThemesService {
     private const val delimiter = "_"
 
-    private const val LIBRARY_PREFIX = "prefs" + delimiter + "bogdandonduk.androidlibs.userinterfacethemesandroid"
+    private const val LIBRARY_PREFIX = "prefs" + delimiter + "bogdandonduk.androidlibs.userinterfacethemesandroid" + delimiter
     private const val IS_DARK_THEME_ENABLED = "isDarkThemeEnabled$delimiter$LIBRARY_PREFIX"
 
     private fun getPreferences(context: Context) : SharedPreferences =
