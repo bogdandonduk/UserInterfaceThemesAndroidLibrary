@@ -27,7 +27,7 @@ object UIThemesService {
     private fun getPreferences(context: Context) : SharedPreferences =
         context.getSharedPreferences(LIBRARY_PREFIX + context.packageName, Context.MODE_PRIVATE)
 
-    private fun isDarkThemeEnabled(context: Context) : Boolean =
+    fun isDarkThemeEnabled(context: Context) : Boolean =
         getPreferences(context)
             .getBoolean(IS_DARK_THEME_ENABLED, context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
 
