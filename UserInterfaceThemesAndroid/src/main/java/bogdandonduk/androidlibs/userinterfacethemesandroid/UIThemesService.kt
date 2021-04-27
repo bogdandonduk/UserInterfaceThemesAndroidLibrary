@@ -41,6 +41,12 @@ object UIThemesService {
     private fun getConfiguredResources(context: Context, darkTheme: Boolean) : Resources =
         context.createConfigurationContext(Configuration(context.resources.configuration).apply { uiMode = if(darkTheme) Configuration.UI_MODE_NIGHT_YES else Configuration.UI_MODE_NIGHT_NO }).resources
 
+    fun resolveColorResource(context: Context, @ColorRes colorResId: Int, darkTheme: Boolean = isDarkThemeEnabled(context), theme: Resources.Theme? = null) =
+        ResourcesCompat.getColor(getConfiguredResources(context, darkTheme), colorResId, theme)
+
+    fun resolveDrawableResource(context: Context, @DrawableRes drawableResId: Int, darkTheme: Boolean = isDarkThemeEnabled(context), theme: Resources.Theme? = null) =
+        ResourcesCompat.getDrawable(getConfiguredResources(context, darkTheme), drawableResId, theme)
+
     fun initializeTextColor(context: Context, vararg texts: TextView?, @ColorRes colorResId: Int, theme: Resources.Theme? = null) {
         texts.forEach {
             it?.setTextColor(ResourcesCompat.getColor(getConfiguredResources(context, isDarkThemeEnabled(context)), colorResId, theme))
